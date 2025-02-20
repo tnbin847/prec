@@ -22,6 +22,9 @@ spring:
       cache:
         period: 36000
 
+mybatis:
+  type-handlers-package: com.suihin.prec.global.common.mybatis
+
 server:
   servlet:
     # HTTP 요청 및 응답 인코딩 설정
