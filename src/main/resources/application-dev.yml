@@ -1,0 +1,39 @@
+############################################################################
+# 개발 환경 설정
+############################################################################
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  # H2 인메모리 데이터베이스
+  datasource:
+    url: jdbc:h2:mem:prec_dev;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    driver-class-name: org.h2.Driver
+  # 데이터베이스 스키마 버전 관리 : 비활성화
+  flyway:
+    enabled: false
+  # SQL 초기 데이터 설정
+  sql:
+    init:
+      # ALWAYS : 애플리케이션 실행 때마다 SQL 스크립트 실행
+      # EMBEDDED : 내장 데이터베이스 사용시 SQL 스크립트 실행
+      # NEVER : SQL 스크립트 실행하지 않음
+      mode: EMBEDDED
+      schema-locations:
+        - classpath:sql/script/schema.sql
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+
+# 개발 환경 로깅 레벨 설정
+logging:
+  level:
+    root: INFO
+    web: DEBUG
+
+# 개발 환경 서버 포트 번호 변경
+server:
+  port: 80

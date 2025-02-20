@@ -1,0 +1,31 @@
+############################################################################
+# 공통 환경 설정
+############################################################################
+spring:
+  config:
+    activate:
+      on-profile:
+        - common
+  main:
+    # 서버 런타임시 콘솔상에 출력되는 배너 끄기
+    banner-mode: OFF
+  # 웹 브라우저의 새로고침을 통한 화면 반영을 위한 뷰 템플릿 경로와 캐싱값 지정
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+  # 웹 브라우저의 새로고침을 통한 화면 반영을 위한 정적 리소스의 경로와 캐싱값 지정
+  web:
+    resources:
+      static-locations:
+        - file:src/main/resources/static/
+      # 정적 리소스 캐싱 기간 지정 : 10시간
+      cache:
+        period: 36000
+
+server:
+  servlet:
+    # HTTP 요청 및 응답 인코딩 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
