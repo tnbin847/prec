@@ -40,4 +40,14 @@ public enum ResponseEnum {
     private final String message;
 
     private final HttpStatus status;
+
+    /**
+     * 응답 메시지를 동적으로 포맷팅하여 반환한다.
+     *
+     * @param args  포맷 작업시 삽입될 값들
+     * @return      포맷팅된 메시지
+     */
+    public String getFormattedMessage(Object... args) {
+        return String.format(this.message, args);
+    }
 }
