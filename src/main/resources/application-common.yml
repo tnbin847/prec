@@ -1,0 +1,45 @@
+#################################################################################
+# 공통 환경 설정
+#################################################################################
+spring:
+  config:
+    activate:
+      on-profile:
+        - common
+  application:
+    name: prec-v1
+  main:
+    banner-mode: OFF  # 런타임시 콘솔상에 출력되는 배너 끄기
+  # 웹 브라우저의 새로고침을 통한 화면 반영을 위해 타임리프 템플릿과 정적 리소스의 경로 및 캐싱값 설정
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+  web:
+    resources:
+      static-locations:
+        - file:src/main/resources/static/
+      cache:
+        period: 36000   # 정적 리소스 캐싱 기간 설정 : 36000(= 10시간)
+
+# 마이바티스 설정
+mybatis:
+  # 마이바티스 설정 파일 경로 지정
+  config-location: classpath:mybatis/config/mybatis-config.xml
+  type-aliases-package: com.suihin.prec.domain.**.dto
+  type-handlers-package: com.suihin.prec.global.common.mybatis
+  # 매퍼 XML 파일 경로 지정
+  mapper-locations:
+    - classpath:mybatis/mappers/*_mapper.xml
+
+# 서버 설정
+server:
+  servlet:
+    application-display-name: prec
+    # HTTP 요청 및 응답의 인코딩 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
